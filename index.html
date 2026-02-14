@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ranju, Be My Valentine?</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Comic Sans MS', cursive, sans-serif;
+        background: linear-gradient(135deg, #ffb6c1, #ff69b4);
+        text-align: center;
+        overflow-x: hidden;
+        color: white;
+    }
+
+    /* Glowing Name */
+    .glow {
+        font-size: 4em;
+        margin-top: 60px;
+        animation: glow 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+        from {
+            text-shadow: 0 0 10px #fff,
+                         0 0 20px #ff69b4,
+                         0 0 30px #ff1493,
+                         0 0 40px #ff1493;
+        }
+        to {
+            text-shadow: 0 0 20px #fff,
+                         0 0 30px #ff85c1,
+                         0 0 40px #ff1493,
+                         0 0 50px #ff69b4;
+        }
+    }
+
+    /* Romantic Subtext */
+    .romantic-line {
+        font-size: 1.5em;
+        margin-top: 10px;
+        opacity: 0;
+        animation: fadeIn 3s ease forwards;
+        animation-delay: 1s;
+    }
+
+    @keyframes fadeIn {
+        to { opacity: 1; }
+    }
+
+    h1 {
+        font-size: 2.5em;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 15px 30px;
+        margin: 20px;
+        font-size: 1.2em;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .yes {
+        background-color: #ff1493;
+        color: white;
+    }
+
+    .no {
+        background-color: white;
+        color: #ff1493;
+    }
+
+    .btn:hover {
+        transform: scale(1.1);
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .options {
+        margin-top: 40px;
+    }
+
+    .heart {
+        position: fixed;
+        top: -10px;
+        font-size: 20px;
+        animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+        to {
+            transform: translateY(100vh);
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="glow">Ranju 💖</div>
+<div class="romantic-line">
+    Happy Valentine’s Day to my today, tomorrow, and forever 💕
+</div>
+
+<h1 id="question">Will you be my Valentine?</h1>
+
+<button class="btn yes" onclick="sayYes()">Yes 💕</button>
+<button class="btn no" onclick="sayNo()">No 😏</button>
+
+<div id="nextSection" class="hidden">
+
+    <h2>Hehe I knew you'd say YES 😌💘</h2>
+
+    <div class="options">
+        <h3>Choose our date plan:</h3>
+        <button class="btn yes">Romantic Dinner 🍝</button>
+        <button class="btn yes">Movie Night + Cuddles 🎬</button>
+        <button class="btn yes">Long Drive + Ice Cream 🚗🍦</button>
+
+        <h3>Pick your gift:</h3>
+        <button class="btn yes">Cute Hoodie 🧥</button>
+        <button class="btn yes">Earpods 🎧</button>
+        <button class="btn yes">Mystery Surprise 🎁</button>
+
+        <h3>Funny Coupons:</h3>
+        <button class="btn yes">1 Free Tight Hug 🤗</button>
+        <button class="btn yes">1 "You Were Right" Pass 😌</button>
+        <button class="btn yes">Unlimited Kisses 💋</button>
+    </div>
+
+    <h2 style="margin-top:50px;">Then come soonnnn!!! 💕💕💕</h2>
+</div>
+
+<script>
+let noCount = 0;
+
+const funnyResponses = [
+    "You thought that was an option? 😤",
+    "Excuse me??? Try again 😌",
+    "Wrong answer. Retry please 💅",
+    "System error. Only YES allowed 💖",
+    "Nice joke. Now click YES 😏",
+    "You're funny. I like that. Now say YES 💕"
+];
+
+function sayNo() {
+    document.getElementById("question").innerText = funnyResponses[noCount % funnyResponses.length];
+    noCount++;
+}
+
+function sayYes() {
+    document.getElementById("question").classList.add("hidden");
+    document.querySelector(".yes").classList.add("hidden");
+    document.querySelector(".no").classList.add("hidden");
+    document.getElementById("nextSection").classList.remove("hidden");
+    startConfetti();
+}
+
+function startConfetti() {
+    for (let i = 0; i < 50; i++) {
+        let heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 5000);
+    }
+}
+</script>
+
+</body>
+</html>
